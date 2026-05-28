@@ -72,8 +72,7 @@ export default function App() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>📝 managementTODO</h1>
-        <p>100% Local & Secure Desktop App</p>
+        <h1>📝 タスク管理アプリ</h1>
       </header>
 
       {/* タブ切り替え部分 */}
