@@ -48,7 +48,7 @@ const DEFAULT_PROMPTS: PromptTemplate[] = [
     keyword: 'メルカリ,フリマ,出品',
     title: '📦 メルカリ出品文',
     description: 'タスク名の商品から、購入者に刺さるタイトル、説明文、タグをフルセットで生成します。',
-    promptText: '『${todoText}』に関するメルカリ出品を行います。購入者に刺さる魅力的な商品タイトル（30文字以内）、商品説明文（状態・サイズ・発送方法 of テンプレート含む）、およびハッシュタグを5つ生成してください。',
+    promptText: '『${todoText}』に関するメルカリ出品を行います。購入者に刺さる魅力的な商品タイトル（30文字以内）、商品説明文（状態・サイズ・発送方法のテンプレート含む）、およびハッシュタグを5つ生成してください。',
     isSystem: true
   },
   {
@@ -56,7 +56,7 @@ const DEFAULT_PROMPTS: PromptTemplate[] = [
     keyword: '株主優待,優待,投資',
     title: '🎁 優待リサーチ',
     description: '銘柄名から、利回り、優待条件、AIによる将来性・改悪リスク評価をまとめた最強のNotionコピペ用テーブルを作ります。',
-    promptText: '【目的：株主優待の定期的なリサーチ・メモ作成】\n私は今、隙間時間を利用して『${todoText}』についてリサーチし、あとで見返したときに一発で投資判断ができる完璧なメモを作成したいと考えています。\n\n以下の【リサーチ確認項目】について、最新のデータとAIによる客観的な企業評価を統合し、Notionやメモ帳にそのままコピペしてデータベース化できる「Markdownの表（テーブル）形式」および「箇条書き」で不足なく情報を出力してください。\n\n■ リサーチ確認項目：\n1. 株の銘柄名\n2. 銘柄コード\n3. 現在の株価\n4. 最低株主優待の取得に必要な株数\n5. 株主優待の具体的な内容\n6. 優待取得に必要な最低投資金額（現在の株価×最低株数）\n7. 長期保有優遇制度の有無\n8. 長期保有優遇がある場合、その具体的な内容と条件\n9. 優待のジャンル（例：飲食券、買い物券、自社製品、カタログギフト等）\n10. 株主権利確定月\n11. 優待取得の特殊な条件（例：○年以上の継続保有必須など）\n12. 優待取得条件を達成しているかどうかの確認方法（企業HPでの確認方法や基準）\n13. 予想配当金（1株あたりおよび最低株数あたり）\n\n■ AIによる企業評価（詳細に分析してください）：\n・今後の株価の方向性（業績推移、成長性からの予測）\n・配当金の割合（配当利回り）\n・株主優待を含めた総合実質利回り（優待＋配当の割合）\n・配当の安定性（過去の減配リスク、利益剰余金の余裕度）\n・【補足重要項目】過去3年間における優待の改悪・廃止リスクの歴史や前兆\n- 【補足重要項目】優待の有効期限、および電子化されているかなど実際の使いやすさ\n・その他、投資する上で知っておくべき有益な情報\n\n上記の項目を、漏れなく見やすく整理して出力してください。',
+    promptText: '【目的：株主優待の定期的なリサーチ・メモ作成】\n私は今、隙間時間を利用して『${todoText}』についてリサーチし、あとで見返したときに一発で投資判断ができる完璧なメモを作成したいと考えています。\n\n以下の【リサーチ確認項目】について、最新のデータとAIによる客観的な企業評価を統合し、Notionやメモ帳にそのままコピペしてデータベース化できる「Markdownの表（テーブル）形式」および「箇条書き」で不足なく情報を出力してください。\n\n■ リサーチ確認項目：\n1. 株の銘柄名\n2. 銘柄コード\n3. 現在の株価\n4. 最低株主優待の取得に必要な株数\n5. 株主優待の具体的な内容\n6. 優待取得に必要な最低投資金額（現在の株価×最低株数）\n7. 長期保有優遇制度の有無\n8. 長期保有優遇がある場合、その具体的な内容と条件\n9. 優待のジャンル（例：飲食券、買い物券、自社製品、カタログギフト等）\n10. 株主権利確定月\n11. 優待取得の特殊な条件（例：○年以上の継続保有必須など）\n12. 優待取得条件を達成しているかどうかの確認方法（企業HPでの確認方法や基準）\n13. 予想配当金（1株あたりおよび最低株数あたり）\n\n■ AIによる企業評価（詳細に分析してください）：\n・今後の株価の方向性（業績推移、成長性からの予測）\n・配当金の割合（配当利回り）\n・株主優待を含めた総合実質利回り（優待＋配当の割合）\n・配当の安定性（過去の減配リスク、利益剰余金の余裕度）\n・【補足重要項目】過去3年間における優待の改悪・廃止リスクの歴史や前兆\n・【補足重要項目】優待の有効期限、および電子化されているかなど実際の使いやすさ\n・その他、投資する上で知っておくべき有益な情報\n\n上記の項目を、漏れなく見やすく整理して出力してください。',
     isSystem: true
   },
   {
@@ -89,12 +89,12 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<'weekday' | 'weekend' | 'history' | 'prompts'>('weekday');
   
   const [todos, setTodos] = useState<Todo[]>(() => {
-    const saved = localStorage.getItem('management-todos');
+    const saved = localStorage.getItem('taskbuddy-todos');
     return saved ? JSON.parse(saved) : [];
   });
 
   const [prompts, setPrompts] = useState<PromptTemplate[]>(() => {
-    const saved = localStorage.getItem('management-templates');
+    const saved = localStorage.getItem('taskbuddy-templates');
     return saved ? JSON.parse(saved) : DEFAULT_PROMPTS;
   });
 
@@ -127,11 +127,11 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('management-todos', JSON.stringify(todos));
+    localStorage.setItem('taskbuddy-todos', JSON.stringify(todos));
   }, [todos]);
 
   useEffect(() => {
-    localStorage.setItem('management-templates', JSON.stringify(prompts));
+    localStorage.setItem('taskbuddy-templates', JSON.stringify(prompts));
   }, [prompts]);
 
   const addTodo = (e: React.FormEvent) => {
@@ -179,16 +179,13 @@ export default function App() {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
-  // 🌟【修正】複数キーワード（カンマ区切り）に対応する判定ロジック
+  // 複数キーワード（カンマ区切り）に対応する判定ロジック
   const checkPromptMatch = (todoText: string, template: PromptTemplate) => {
     if (!template.keyword) return false;
     
     const lowerText = todoText.toLowerCase();
-    
-    // カンマ（半角・全角）や読点（、）で文字を配列に分解する
     const keywords = template.keyword.split(/[,，、]/).map(k => k.trim().toLowerCase());
     
-    // 分解したキーワードのどれか1つでもタスクに含まれていれば true を返す
     return keywords.some(kw => kw !== '' && lowerText.includes(kw));
   };
 
@@ -309,8 +306,8 @@ export default function App() {
       {toastMessage && <div className="toast-fixed-top">{toastMessage}</div>}
 
       <header className="app-header">
-        <h1>📝 managementTODO</h1>
-        <p>100% Local & Secure Desktop App</p>
+        <h1>🚀 TaskBuddy</h1>
+        <p>Your Ultimate AI-Powered Task Companion</p>
       </header>
 
       <div className="tab-container">
@@ -376,7 +373,7 @@ export default function App() {
       {activeTab !== 'history' && activeTab !== 'prompts' && (
         <div className="progress-container">
           <div className="progress-bar-header">
-            <span>今日の達成度</span>
+            <span>バディの本日達成度</span>
             <span>{progressPercentage}%</span>
           </div>
           <div className="progress-bar-bg">
@@ -392,7 +389,7 @@ export default function App() {
               type="text"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              placeholder="やることを入力..."
+              placeholder="バディ、次は何をやる？"
               className="todo-input"
             />
             <div className="form-controls">
@@ -456,7 +453,7 @@ export default function App() {
                   
                   {showAiButton && !todo.completed && (
                     <div className="ai-dropdown-container">
-                      <span className="ai-trigger-icon">💡 AI</span>
+                      <span className="ai-trigger-icon">💡 AIバディ</span>
                       <div className="ai-dropdown-menu">
                         {matchedPrompts.map(p => (
                           <button key={p.id} type="button" onClick={() => handleAiAssist(todo.text, p)}>
@@ -521,7 +518,6 @@ export default function App() {
                   <input type="text" value={customTitle} onChange={(e) => setCustomTitle(e.target.value)} placeholder="メニューボタンに表示される名前" />
                 </div>
                 <div className="form-group">
-                  {/* 🌟【修正】複数キーワードの書き方の説明文・プレースホルダーを明記 */}
                   <label>トリガーとなるキーワード（複数可。カンマで区切る）</label>
                   <input 
                     type="text" 
