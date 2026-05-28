@@ -1,107 +1,712 @@
-/* 全体のリセットと背景（目に優しいダークテーマ） */
 body {
-  background-color: #121214;
-  color: #e2e8f0;
+  background: radial-gradient(circle at top right, #1a1b26, #0f1016);
+  color: #f8fafc;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
 }
 
-/* アプリ全体のコンテナ */
 .app-container {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 24px;
-  background: #1a1a1e;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  border: 1px solid #2a2a32;
+  max-width: 650px;
+  margin: 60px auto;
+  padding: 32px;
+  background: rgba(22, 23, 34, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* ヘッダー部分 */
 .app-header {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .app-header h1 {
   margin: 0;
-  font-size: 24px;
-  color: #ffffff;
-  letter-spacing: 0.5px;
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #63b3ed 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
 }
 
 .app-header p {
-  margin: 4px 0 0 0;
-  font-size: 12px;
-  color: #718096;
+  margin: 8px 0 0 0;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
 }
 
-/* タブ切り替え（平日 / 土日） */
 .tab-container {
   display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-  background: #121214;
-  padding: 4px;
-  border-radius: 8px;
+  gap: 6px;
+  margin-bottom: 24px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .tab-button {
   flex: 1;
-  padding: 12px;
+  padding: 14px;
   background: transparent;
   border: none;
-  color: #a0aec0;
+  color: #94a3b8;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  border-radius: 8px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .tab-button:hover {
-  color: #ffffff;
-  background: #2a2a32;
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .tab-button.active {
-  background: #3182ce;
+  background: linear-gradient(135deg, #3182ce 0%, #4c51bf 100%);
   color: #ffffff;
+  box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
 }
 
-/* 進捗プログレスバー */
+/* 📌 集中フォーカスカード */
+.focus-card {
+  background: linear-gradient(135deg, rgba(99, 179, 237, 0.15) 0%, rgba(167, 139, 250, 0.15) 100%);
+  border: 1px solid rgba(99, 179, 237, 0.3);
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 24px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(49, 130, 206, 0.15);
+}
+
+.focus-badge {
+  font-size: 11px;
+  font-weight: 800;
+  color: #63b3ed;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.focus-text {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.focus-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* 📊 アナリティクスグラフ */
+.analytics-container {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.analytics-container h3 {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.analytics-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.analytics-label {
+  font-size: 13px;
+  width: 120px;
+  color: #cbd5e1;
+}
+
+.analytics-bar-bg {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.analytics-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #a78bfa, #63b3ed);
+  border-radius: 4px;
+}
+
+.analytics-pct {
+  font-size: 12px;
+  color: #94a3b8;
+  width: 35px;
+  text-align: right;
+}
+
 .progress-container {
   margin-bottom: 24px;
-  background: #121214;
-  padding: 12px 16px;
-  border-radius: 8px;
-  border: 1px solid #2a2a32;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 14px;
+  border-radius: 12px;
 }
 
 .progress-bar-header {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
-  color: #a0aec0;
+  font-size: 13px;
+  color: #94a3b8;
   margin-bottom: 8px;
-  font-weight: bold;
 }
 
 .progress-bar-bg {
   width: 100%;
   height: 8px;
-  background: #2d3748;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 4px;
   overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
-  background: #48bb78;
+  background: linear-gradient(90deg, #48bb78, #38a169);
   width: 0%;
-  transition: width 0.3s ease;
+  transition: width 0.4s ease;
 }
 
-/* タスク入力フォーム */
-.
+/* 入力フォームの2段グリッド化 */
+.todo-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.form-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.todo-input {
+  padding: 14px 18px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.todo-input:focus {
+  outline: none;
+  border-color: #63b3ed;
+}
+
+.priority-select {
+  flex: 1;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.submit-button {
+  padding: 0 24px;
+  background: linear-gradient(135deg, #3182ce 0%, #2b6cb0 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* リストアイテム */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.pinned-item {
+  border-color: rgba(99, 179, 237, 0.4);
+  background: rgba(99, 179, 237, 0.03);
+}
+
+.todo-content-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.todo-genre-label {
+  font-size: 10px;
+  color: #718096;
+  font-weight: bold;
+}
+
+.todo-text {
+  font-size: 14px;
+  color: #e2e8f0;
+}
+
+.todo-item.completed { opacity: 0.4; }
+.todo-item.completed .todo-text { text-decoration: line-through; }
+
+/* 📌 ピンボタン */
+.pin-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: opacity 0.2s;
+  padding: 4px;
+  font-size: 14px;
+}
+
+.pin-button:hover, .pin-button.active {
+  opacity: 1;
+}
+
+/* 📋 AIホバーメニュー */
+.ai-dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.ai-trigger-icon {
+  background: rgba(99, 179, 237, 0.1);
+  color: #63b3ed;
+  border: 1px solid rgba(99, 179, 237, 0.3);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ai-dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 24px;
+  background: #1e1e24;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  z-index: 10;
+  width: 140px;
+  overflow: hidden;
+}
+
+.ai-dropdown-container:hover .ai-dropdown-menu {
+  display: block;
+}
+
+.ai-dropdown-menu button {
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  color: #cbd5e1;
+  text-align: left;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.ai-dropdown-menu button:hover {
+  background: #3182ce;
+  color: white;
+}
+
+/* バッジとその他の装飾 */
+.priority-badge { font-size: 11px; padding: 3px 10px; border-radius: 6px; font-weight: 600; }
+.priority-badge.high { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+.priority-badge.medium { background: rgba(234, 179, 8, 0.15); color: #facc15; }
+.priority-badge.low { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
+
+.delete-button { background: transparent; border: none; cursor: pointer; font-size: 14px; }
+.empty-message { text-align: center; color: #64748b; font-size: 14px; padding: 32px 0; }
+
+.keyword-management-section { margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.keyword-management-section h3 { font-size: 14px; color: #94a3b8; margin-bottom: 12px; }
+.keyword-form { display: flex; gap: 8px; margin-bottom: 12px; }
+.keyword-input { flex: 1; padding: 10px 14px; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; color: #ffffff; font-size: 13px; }
+.keyword-submit-button { padding: 0 16px; background: rgba(255, 255, 255, 0.05); color: #e2e8f0; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; font-size: 13px; cursor: pointer; }
+.keyword-badge-container { display: flex; flex-wrap: wrap; gap: 8px; }
+.keyword-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(167, 139, 250, 0.1); color: #c084fc; border: 1px solid rgba(167, 139, 250, 0.2); padding: 4px 10px; border-radius: 6px; font-size: 12px; }
+.keyword-delete-btn { background: transparent; border: none; color: #f87171; cursor: pointer; }
+
+.toast {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+  z-index: 1000;
+  animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -20px); }
+  15% { opacity: 1; transform: translate(-50%, 0); }
+  85% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -20px); }
+}
+
+/* 🌟 成果日報コピーボタンのスタイル */
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.analytics-header h3 {
+  margin: 0 !important;
+}
+
+.report-copy-button {
+  background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+  transition: all 0.2s ease;
+}
+
+.report-copy-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4);
+}
+
+/* 🌟 画面上部に完全固定されるリッチ通知ポップアップ */
+.toast-fixed-top {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999; /* 他のどの要素よりも手前に表示 */
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+  animation: slideInDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translate(-50%, -40px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   🌟 新機能：AIプロンプト図鑑 ＆ サジェスト用追加スタイル
+   ========================================================================== */
+
+/* 入力欄のAI自動サジェスト */
+.ai-suggest-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -8px 0 16px 0;
+  animation: fadeIn 0.2s ease;
+}
+
+.ai-suggest-badge {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* 図鑑コンテナ */
+.prompt-dictionary-container {
+  background: #111827;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #1f2937;
+  margin-top: 16px;
+  animation: fadeIn 0.3s ease;
+}
+
+.section-intro {
+  color: #9ca3af;
+  font-size: 13px;
+  margin-top: -8px;
+  margin-bottom: 24px;
+}
+
+/* プロンプトグリッド */
+.prompt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* プロンプトカード */
+.prompt-card {
+  background: #1f2937;
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid #374151;
+  display: flex;
+  flex-direction: column;
+}
+
+.prompt-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.prompt-card-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #f3f4f6;
+}
+
+.prompt-card-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.prompt-edit-btn {
+  background: #374151;
+  color: #d1d5db;
+  border: none;
+  padding: 3px 8px;
+  font-size: 11px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.prompt-edit-btn:hover {
+  background: #4b5563;
+  color: white;
+}
+
+.prompt-delete-btn {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: none;
+  padding: 3px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.prompt-delete-btn:hover {
+  background: #ef4444;
+  color: white;
+}
+
+.prompt-badge-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.p-keyword-badge {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.p-universal-badge {
+  background: rgba(156, 163, 175, 0.15);
+  border: 1px solid rgba(156, 163, 175, 0.3);
+  color: #9ca3af;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.p-system-badge {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.prompt-card-desc {
+  color: #d1d5db;
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 0 0 12px 0;
+  flex-grow: 1;
+}
+
+.prompt-code-box {
+  background: #111827;
+  border-radius: 6px;
+  padding: 10px;
+  max-height: 100px;
+  overflow-y: auto;
+  border: 1px solid #374151;
+  margin-bottom: 12px;
+}
+
+.prompt-code-box pre {
+  margin: 0;
+  font-family: monospace;
+  font-size: 11px;
+  color: #9ca3af;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.prompt-direct-copy {
+  background: #374151;
+  color: white;
+  border: 1px solid #4b5563;
+  padding: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.prompt-direct-copy:hover {
+  background: #10b981;
+  border-color: #10b981;
+}
+
+/* カスタム登録フォーム */
+.custom-prompt-form-section {
+  background: #1f2937;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #374151;
+}
+
+.prompt-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-row-twin {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row-twin .form-group {
+  flex: 1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 600;
+}
+
+.form-group input, .form-group textarea {
+  background: #111827;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  color: white;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.form-group textarea {
+  font-family: monospace;
+  resize: vertical;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.save-prompt-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-edit-btn {
+  background: #4b5563;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+}

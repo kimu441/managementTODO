@@ -21,5 +21,11 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+ "include": [
+    "App.tsx", 
+    "main.tsx", 
+    "vite-env.d.ts", 
+    "**/*.ts", 
+    "**/*.tsx"
+  ]
 }
